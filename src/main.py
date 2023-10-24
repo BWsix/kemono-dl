@@ -127,7 +127,6 @@ class downloader:
 
     def get_post(self, url:str):
         found = re.search(r'(https://(kemono\.su|coomer\.su)/)(([^/]+)/user/([^/]+)($|/post/[^/]+))', url)
-        print(found)
         if not found:
             logger.error(f"Unable to find url parameters for {url}")
             return
