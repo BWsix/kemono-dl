@@ -1,7 +1,7 @@
 ## USERS
 ```python
 # api call: /api/v1/{service}/user/{user_id}?o={chunk}
-# chunk starts at 0 and incriments by 25
+# chunk starts at 0 and incriments by 50
 # returns a list of post data (see POSTS)
 ```
 ## POSTS
