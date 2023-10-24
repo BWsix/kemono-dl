@@ -1,12 +1,12 @@
 ## USERS
 ```python
-# api call: /api/{service}/user/{user_id}?o={chunk}
+# api call: /api/v1/{service}/user/{user_id}?o={chunk}
 # chunk starts at 0 and incriments by 25
 # returns a list of post data (see POSTS)
 ```
 ## POSTS
 ```python
-# api call: /api/{service}/user/{user_id}/post/{post_id}
+# api call: /api/v1/{service}/user/{user_id}/post/{post_id}
 # returns a dictionary of the post data
 
 post                    # dict      
@@ -31,7 +31,7 @@ post                    # dict
 ```
 ## DISCORD CHANNELS
 ```python
-# api call: /api/discord/channels/lookup?q={sercer_id}
+# api call: /api/v1/discord/channels/lookup?q={sercer_id}
 # returns a list of dictionaris contaning channel names and ids
 
 channel                     # dict
@@ -40,7 +40,7 @@ channel                     # dict
 ```
 ## DISCORD CHANNEL POSTS
 ```python
-# api call: /api/discord/channel/{channel_id}?skip={skip}
+# api call: /api/v1/discord/channel/{channel_id}?skip={skip}
 # skip starts at 0 and incriments by 10
 # returns a list of dictionaries contaning each posts data
 
@@ -81,7 +81,7 @@ post                        # dict
 ```
 ## CREATORS
 ```python
-# api call: /api/creators
+# api call: /api/v1/creators
 # returns a list of dictionaries of user data
 
 creator            # dict
@@ -93,7 +93,7 @@ creator            # dict
 ```
 ## FAVORITES
 ```python
-# api all: /api/favorites?type={type}
+# api all: /api/v1/favorites?type={type}
 # type can be post or artist
 # (artist) returns a list of dictionaries with user data
 
