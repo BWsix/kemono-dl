@@ -1,4 +1,4 @@
-# kemono-dl
+# kemono-su-dl
 A downloader tool for kemono.su and coomer.su.
 
 ## How to use
