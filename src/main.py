@@ -61,6 +61,7 @@ class downloader:
         if args['banner']:
             self.icon_banner.append('banner')
         self.dms = args['dms']
+        self.announcements = args['announcements']
 
         # controls files to ignore
         self.overwrite = args['overwrite']
@@ -165,6 +166,8 @@ class downloader:
                     self.download_icon_banner(post, self.icon_banner)
                     if self.dms:
                         self.write_dms(post)
+                    if self.announcements:
+                        self.write_announcements(post)
                     first = False
                 if self.skip_post(post):
                     continue
@@ -225,6 +228,29 @@ class downloader:
         }
         file_path = compile_file_path(post['post_path'], post['post_variables'], file_variables, self.user_filename_template, self.restrict_ascii)
         self.write_to_file(file_path, dms_soup.prettify())
+
+    def write_announcements(self, post:dict):
+        post_url = "https://{site}/api/v1/{service}/user/{user_id}/announcements".format(**post['post_variables'])
+        response = self.session.get(url=post_url, allow_redirects=True, headers=self.headers, cookies=self.cookies, timeout=self.timeout)
+        if not response.ok:
+            logger.error("Failed to download announcement, skipping...")
+        if not response.json():
+            logger.info("No announcements found for https://{site}/{service}/user/{user_id}".format(**post['post_variables']))
+
+        announcements = ""
+        for announcement in response.json():
+            announcements += f'# {announcement["published"].split("T")[0]}\n\n'
+            announcements += f'{announcement["content"].strip()}\n\n'
+
+        file_variables = {
+            'filename':'announcements',
+            'ext':'txt'
+        }
+        file_path = compile_file_path(post['post_path'], post['post_variables'], file_variables, self.user_filename_template, self.restrict_ascii)
+        overwrite_original = self.overwrite
+        self.overwrite = True
+        self.write_to_file(file_path, announcements)
+        self.overwrite = overwrite_original
 
     def get_inline_images(self, post, content_soup):
         # only get images that are hosted by the .su site

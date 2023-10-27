@@ -74,6 +74,10 @@ def get_args():
                     action='store_true', default=False,
                     help="Download the users profile banner. Only works when a user url is passed.")
 
+    ap.add_argument("--announcements",
+                    action='store_true', default=False,
+                    help="Download announcements (always overwrite). Only works when a user url is passed.")
+
     ap.add_argument("--yt-dlp",
                     action='store_true', default=False,
                     help="Try to download the post embed with yt-dlp.")
