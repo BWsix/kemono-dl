@@ -234,7 +234,7 @@ class downloader:
         response = self.session.get(url=post_url, allow_redirects=True, headers=self.headers, cookies=self.cookies, timeout=self.timeout)
         if not response.ok:
             logger.error("Failed to download announcement, skipping...")
-        if not response.json():
+        if not len(response.json()):
             logger.info("No announcements found for https://{site}/{service}/user/{user_id}".format(**post['post_variables']))
 
         announcements = ""
