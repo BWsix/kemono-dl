@@ -53,7 +53,7 @@ Download the users profile icon. Only works when a user url is passed.
 `--banner`  
 Download the users profile banner. Only works when a user url is passed.  
 `--announcements`  
-Download announcements (always overwrite). Only works when a user url is passed.
+Download announcements (always overwrite). Only works when a user url is passed.  
 `--yt-dlp` (UNDER CONSTRUCTION)  
 Try to download the post embed with yt-dlp.  
 `--skip-attachments`  
